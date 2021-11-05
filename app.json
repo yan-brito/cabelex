@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "cabelex",
+    "slug": "cabelex",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "cabelex"
+}
