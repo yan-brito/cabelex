@@ -9,10 +9,12 @@
     "start": "expo start"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "expo": "~43.0.0",
     "expo-splash-screen": "~0.13.3",
     "expo-status-bar": "~1.1.0",
     "expo-updates": "~0.10.5",
+    "inflected": "^2.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.2",
@@ -26,6 +28,7 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "miragejs": "^0.1.42",
     "typescript": "~4.3.5"
   },
   "private": true
