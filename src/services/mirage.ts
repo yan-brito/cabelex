@@ -44,46 +44,50 @@ export function makeServer() {
         email: "teste@email.com", 
         password: "123456", 
         created_at: new Date().toISOString(),
-        token: String(new Date().getTime())
+        token: 'teste'
       });
 
       server.create('branch', {
-        name: 'Cabelex - Matrix',
+        name: 'Cabelex - Matriz',
         id: '1'
       });
 
       server.create('branch', {
-        name: 'Cabelex - Rio de Janeiro',
+        name: 'Cabelex - RJ',
         id: '2'
       });
 
       server.create('branch', {
-        name: 'Cabelex - Salvador',
+        name: 'Cabelex - BH',
         id: '3'
       });
 
       server.create('employee', {
-        name: 'Rogério',
+        name: 'Rogério Silva',
         id: '1',
-        branch: '1'
+        branch: '1',
+        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
-        name: 'Luciano',
+        name: 'Luciano Neves',
         id: '2',
-        branch: '1'
+        branch: '1',
+        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
-        name: 'Julia',
+        name: 'Julia Santos',
         id: '3',
-        branch: '2'
+        branch: '2',
+        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
-        name: 'Reinaldo',
+        name: 'Reinaldo Silva',
         id: '4',
-        branch: '2'
+        branch: '2',
+        image: 'http://github.com/yan-brito.png'
       });
 
     },

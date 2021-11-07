@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
-import { BranchProps } from '../../components/ItemCard';
+import { BranchProps } from '../../components/BranchCard';
 
 export const Container = styled(
   FlatList as new () => FlatList<BranchProps>

@@ -16,6 +16,7 @@ export const Container = styled.View`
   flex-direction: row;
 
   padding-left: 15px;
+  margin-bottom: 5px;
 `;
 
 export const DetailsContainer = styled.View`
@@ -84,4 +85,14 @@ export const ButtonIcon = styled(MaterialCommunityIcons)<Button>`
     : ( type === 'edit' ? theme.colors.shape: theme.colors.attention )};
 
   font-size: 28px;
+`;
+
+export const ModalTitle = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 18px;
+
+  margin-bottom: 8px;
+
+  text-align: center;
 `;

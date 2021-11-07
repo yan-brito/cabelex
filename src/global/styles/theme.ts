@@ -1,6 +1,7 @@
 export default {
   colors: {
     primary:'#6f4bc2',
+    primary_light: 'rgba(111, 75, 194, 0.5)',
 
     success: '#12A454',
     success_light: 'rgba(18, 164, 84, 0.5)',
@@ -13,7 +14,9 @@ export default {
 
     title: '#363F5F',
     text: '#969CB2',
-    background: '#F0F2F5'
+
+    background: '#F0F2F5',
+    overflow: 'rgba(0,0,0,0.3)',
   },
 
   fonts: {
