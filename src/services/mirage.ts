@@ -162,9 +162,11 @@ export function makeServer() {
           return new Response(403, {}, 'Access denied');
         };
 
+        const branches = schema.all('branch');
+
         const branch = schema.create('branch', {
           name: body.name,
-          id: String(new Date().getTime())
+          id: String(branches.length - 1)
         });
 
         return new Response(200, {}, branch);

@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { makeServer } from './src/services/mirage';
+
+import { AppRoutes } from './src/routes/app.routes';
 
 if((window as any).server) {
   (window as any).server.shutdown();
@@ -12,18 +14,8 @@ if((window as any).server) {
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Cabelex!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AppRoutes/>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
