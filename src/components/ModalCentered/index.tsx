@@ -5,7 +5,7 @@ import { CloseIcon, CloseModal, Container, Content, ModalTitle, Overlay } from '
 type Props = ModalProps & {
   children:  ReactNode;
   closeModal: () => void;
-  title: string;
+  title?: string;
 };
 
 export function ModalCentered({children, closeModal, title, ...rest }: Props) {

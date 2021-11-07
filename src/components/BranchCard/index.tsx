@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import api from '../../services/api';
+
 import { EmployeeList } from '../EmployeeList';
+import { ModalCentered } from '../ModalCentered';
 import { ModalView } from '../ModalView';
 
 import { 
   Button, 
   ButtonIcon, 
   ButtonsContainer, 
+  ButtonTitle, 
   Container, 
   Details, 
   DetailsContainer, 
+  EditBranchContainer, 
+  EditButton, 
   EmployeeContainer, 
   EmployeeIcon, 
   Employees, 
+  Form, 
   Id, 
-  Name 
+  Label, 
+  Name, 
+  NameInput
 } from './styles';
 
 export type EmployeeProps = {
@@ -29,17 +39,42 @@ export type BranchProps = {
   employees: EmployeeProps[] | [];
 };
 
-type Props = BranchProps;
+type Props = BranchProps & {
+  getBranches: () => void;
+};
 
-export function BranchCard({ name, id, employees }: Props) {
-  const [employeesModal, setEmployeesModal] = useState(false);
+export function BranchCard({ name, id, employees, getBranches }: Props) {
+  const [employeesModalVisible, setEmployeesModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [newBranchName, setNewBranchName] = useState(name);
 
   function handleOpenEmployeesModal() {
-    setEmployeesModal(true);
+    setEmployeesModalVisible(true);
   }
 
   function handleCloseEmployeesModal() {
-    setEmployeesModal(false);
+    setEmployeesModalVisible(false);
+  }
+
+  function handleOpenEditModal() {
+    setEditModalVisible(true);
+  }
+
+  function handleCloseEditModal() {
+    setEditModalVisible(false);
+  }
+
+  async function handleEditBranch() {
+    if(newBranchName.length > 3) {
+      try{
+        await api.patch(`/branches/${id}`, { name: newBranchName });
+
+        handleCloseEditModal();
+        getBranches();
+      }catch(error) {
+        Alert.alert(error.message);
+      }
+    }
   }
 
   return(
@@ -62,7 +97,7 @@ export function BranchCard({ name, id, employees }: Props) {
           <Button onPress={handleOpenEmployeesModal}>
             <ButtonIcon type="employee" name="account-multiple" />
           </Button>
-          <Button >
+          <Button onPress={handleOpenEditModal}>
             <ButtonIcon type="edit" name="square-edit-outline" />
           </Button>
           <Button >
@@ -72,11 +107,29 @@ export function BranchCard({ name, id, employees }: Props) {
       </Container>
       <ModalView 
         title="Funcionários" 
-        visible={employeesModal} 
+        visible={employeesModalVisible} 
         closeModal={handleCloseEmployeesModal} 
       >
         <EmployeeList data={employees} />
       </ModalView>
+      <ModalCentered
+        title="Editar filial"
+        visible={editModalVisible}
+        closeModal={handleCloseEditModal}
+      >
+        <EditBranchContainer>
+          <Form>
+            <Label>Nome da filial</Label>
+            <NameInput
+              value={newBranchName}
+              onChangeText={setNewBranchName}
+            />
+          </Form>
+          <EditButton onPress={handleEditBranch}>
+            <ButtonTitle>Confirmar</ButtonTitle>
+          </EditButton>
+        </EditBranchContainer>
+      </ModalCentered>
     </>
   );
 };

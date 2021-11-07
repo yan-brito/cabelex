@@ -212,7 +212,7 @@ export function makeServer() {
           return new Response(403, {}, 'Access denied');
         };
 
-        const branch = schema.findBy('employee', {
+        const branch = schema.findBy('branch', {
           id: params.id
         });
 

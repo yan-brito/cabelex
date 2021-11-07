@@ -93,7 +93,7 @@ export function Branches() {
         data={data}
         keyExtractor={item => item.id}
         renderItem={({ item }) => 
-          <BranchCard name={item.name} id={item.id} employees={item.employees} />
+          <BranchCard name={item.name} id={item.id} employees={item.employees} getBranches={getBranches} />
         }
       />
       <CreateBranch onPress={handleOpenCreateBranchModal}>
