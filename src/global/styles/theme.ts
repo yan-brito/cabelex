@@ -16,7 +16,7 @@ export default {
     text: '#969CB2',
 
     background: '#F0F2F5',
-    overflow: 'rgba(0,0,0,0.3)',
+    overlay: 'rgba(0,0,0,0.3)',
   },
 
   fonts: {

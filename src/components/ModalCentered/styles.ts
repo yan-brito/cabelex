@@ -2,23 +2,24 @@ import styled from 'styled-components/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export const Modal = styled.Modal`
+export const Container = styled.Modal`
+  flex: 1;
+  position: absolute;
 `;
 
 export const Overlay = styled.View`
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${({ theme }) => theme.colors.overlay};
 
   flex: 1;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const Content = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
 
   width: 95%;
-  height: 88%;
 
   padding: 35px 5px 0;
 

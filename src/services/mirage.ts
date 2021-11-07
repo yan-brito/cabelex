@@ -170,7 +170,7 @@ export function makeServer() {
 
         const branch = schema.create('branch', {
           name: body.name,
-          id: String(branches.length - 1)
+          id: String(branches.length + 1)
         });
 
         return new Response(200, {}, branch);

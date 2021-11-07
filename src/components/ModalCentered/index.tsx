@@ -1,18 +1,19 @@
 import React, { ReactNode } from 'react';
 import { ModalProps } from 'react-native';
-import { CloseIcon, CloseModal, Content, Modal, ModalTitle, Overlay } from './styles';
+import { CloseIcon, CloseModal, Container, Content, ModalTitle, Overlay } from './styles';
 
 type Props = ModalProps & {
-  children: ReactNode;
+  children:  ReactNode;
   closeModal: () => void;
   title: string;
 };
 
-export function ModalView({ children, closeModal, title, ...rest }: Props) {
+export function ModalCentered({children, closeModal, title, ...rest }: Props) {
   return(
-    <Modal 
-      transparent {...rest}
-      animationType="slide"
+    <Container 
+      transparent
+      animationType="fade"
+      {...rest}
     >
       <Overlay>
         <Content>
@@ -20,9 +21,9 @@ export function ModalView({ children, closeModal, title, ...rest }: Props) {
             <CloseIcon/>
           </CloseModal>
           <ModalTitle> { title } </ModalTitle>
-            { children }
+          { children }
         </Content>
       </Overlay>
-    </Modal>
+    </Container>
   );
 };

@@ -86,13 +86,3 @@ export const ButtonIcon = styled(MaterialCommunityIcons)<Button>`
 
   font-size: 28px;
 `;
-
-export const ModalTitle = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.bold};
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 18px;
-
-  margin-bottom: 8px;
-
-  text-align: center;
-`;

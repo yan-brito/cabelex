@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
 import { EmployeeList } from '../EmployeeList';
 import { ModalView } from '../ModalView';
 
@@ -14,7 +13,6 @@ import {
   EmployeeIcon, 
   Employees, 
   Id, 
-  ModalTitle, 
   Name 
 } from './styles';
 
@@ -72,8 +70,11 @@ export function BranchCard({ name, id, employees }: Props) {
           </Button>
         </ButtonsContainer>
       </Container>
-      <ModalView visible={employeesModal} closeModal={handleCloseEmployeesModal} >
-        <ModalTitle>Funcionários</ModalTitle>
+      <ModalView 
+        title="Funcionários" 
+        visible={employeesModal} 
+        closeModal={handleCloseEmployeesModal} 
+      >
         <EmployeeList data={employees} />
       </ModalView>
     </>
