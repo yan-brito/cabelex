@@ -12,6 +12,7 @@ import {
   ButtonsContainer, 
   ButtonTitle, 
   Container, 
+  DeleteButtonTitle, 
   Details, 
   DetailsContainer, 
   EditBranchContainer, 
@@ -23,7 +24,10 @@ import {
   Id, 
   Label, 
   Name, 
-  NameInput
+  NameInput,
+  WarningButton,
+  WarningButtonContainer,
+  WarningText
 } from './styles';
 
 export type EmployeeProps = {
@@ -46,6 +50,8 @@ type Props = BranchProps & {
 export function BranchCard({ name, id, employees, getBranches }: Props) {
   const [employeesModalVisible, setEmployeesModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
   const [newBranchName, setNewBranchName] = useState(name);
 
   function handleOpenEmployeesModal() {
@@ -64,6 +70,14 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
     setEditModalVisible(false);
   }
 
+  function handleOpenDeleteModal() {
+    setDeleteModalVisible(true);
+  }
+
+  function handleCloseDeleteModal() {
+    setDeleteModalVisible(false);
+  }
+
   async function handleEditBranch() {
     if(newBranchName.length > 3) {
       try{
@@ -75,6 +89,22 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
         Alert.alert(error.message);
       }
     }
+  }
+
+  async function handleDeleteBranch() {
+    if(employees.length === 0) {
+      try {
+        await api.delete(`/branches/${id}`);
+  
+        handleCloseDeleteModal();
+        getBranches();
+      }catch(error){
+        Alert.alert(error.message);
+      }
+    } else {
+      Alert.alert('Não é possível apagar uma filial que possui funcionários vinculados.')
+    }
+    
   }
 
   return(
@@ -100,7 +130,7 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
           <Button onPress={handleOpenEditModal}>
             <ButtonIcon type="edit" name="square-edit-outline" />
           </Button>
-          <Button >
+          <Button onPress={handleOpenDeleteModal}>
             <ButtonIcon type="delete" name="close" />
           </Button>
         </ButtonsContainer>
@@ -129,6 +159,24 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
             <ButtonTitle>Confirmar</ButtonTitle>
           </EditButton>
         </EditBranchContainer>
+      </ModalCentered>
+      <ModalCentered
+        title="Apagar Filial"
+        visible={deleteModalVisible}
+        closeModal={handleCloseDeleteModal}
+      >
+        <WarningText>Tem certeza que deseja apagar a filial { name }?</WarningText>
+        <WarningButtonContainer>
+          <WarningButton 
+            focused
+            onPress={handleCloseDeleteModal}
+          >
+            <ButtonTitle>Cancelar</ButtonTitle>
+          </WarningButton>
+          <WarningButton onPress={handleDeleteBranch}>
+            <DeleteButtonTitle>Apagar</DeleteButtonTitle>
+          </WarningButton>
+        </WarningButtonContainer>
       </ModalCentered>
     </>
   );
