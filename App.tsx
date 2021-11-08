@@ -16,6 +16,7 @@ import {
 
 import { AppRoutes } from './src/routes/app.routes';
 import theme from './src/global/styles/theme';
+import { SignIn } from './src/pages/SignIn';
 
 if((window as any).server) {
   (window as any).server.shutdown();
@@ -36,9 +37,10 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
+      <SignIn/>
+      {/* <NavigationContainer>
         <AppRoutes/>
-      </NavigationContainer>
+      </NavigationContainer> */}
     </ThemeProvider>
   );
 }
