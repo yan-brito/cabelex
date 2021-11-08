@@ -1,27 +1,34 @@
 import React from 'react';
 import { EmployeeProps } from '../BranchCard';
 import { EmployeeCard } from '../EmployeeCard';
-import { Container, Warning, WarningContainer } from './styles';
+import { Container, Loading, LoadingContainer, Warning, WarningContainer } from './styles';
 
 type Props = {
-  withOptions?: false;
+  withOptions?: boolean;
   data: EmployeeProps[];
+  getEmployees: () => void;
 };
 
-export function EmployeeList({ data }: Props) {
-  return(
-    <>
-    { data.length > 0 ?
-      <Container
-        data={data}
-        keyExtractor={item => item.id}
-        renderItem={ ({ item }) => <EmployeeCard data={item} />}
-      />
-      :
-      <WarningContainer>
-        <Warning>Ainda não há funcionários cadastrados nessa filial.</Warning>
-      </WarningContainer>
-    }
-    </>
-  );
+export function EmployeeList({ data, withOptions, getEmployees }: Props) {
+    if(!data) {
+      return (
+        <LoadingContainer>
+          <Loading/>
+        </LoadingContainer>
+      )
+    } else if(data.length > 0) {
+      return (
+        <Container
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={ ({ item }) => <EmployeeCard data={item} withOptions={withOptions} getEmployees={getEmployees} />}
+        />
+      );
+    } else {
+      return (
+        <WarningContainer>
+          <Warning>Ainda não há funcionários cadastrados.</Warning>
+        </WarningContainer>
+      );
+    };
 };

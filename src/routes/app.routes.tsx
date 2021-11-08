@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Branches } from '../pages/Branches';
+import { Employees } from '../pages/Employees';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -51,7 +52,7 @@ export function AppRoutes() {
       />
       <Screen
         name="Funcionários"
-        component={Branches}
+        component={Employees}
         options={{
           tabBarIcon: (({ size, color }) => 
             <MaterialCommunityIcons 

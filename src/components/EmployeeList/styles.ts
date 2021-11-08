@@ -12,7 +12,9 @@ export const Container = styled(
     paddingTop: 5,
     paddingHorizontal: 3
   }
-})``;
+})`
+  width: 100%;
+`;
 
 export const WarningContainer = styled.View`
   flex: 1;
@@ -28,4 +30,16 @@ export const Warning = styled.Text`
   text-align: center;
 
   margin-top: -150px;
+`;
+
+export const LoadingContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Loading = styled.ActivityIndicator.attrs({
+  size: 'large',
+  color: '#6f4bc2'
+})`
 `;

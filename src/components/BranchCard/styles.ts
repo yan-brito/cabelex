@@ -86,7 +86,7 @@ export const Button = styled(RectButton)`
 export const ButtonIcon = styled(MaterialCommunityIcons)<Button>`
   color: ${({ type, theme }) => 
     type === 'employee' ? theme.colors.success 
-    : ( type === 'edit' ? theme.colors.shape: theme.colors.attention )};
+    : ( type === 'edit' ? theme.colors.title: theme.colors.attention )};
 
   font-size: 28px;
 `;
