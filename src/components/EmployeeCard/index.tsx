@@ -7,6 +7,7 @@ import { Branch, BranchContainer, BranchIcon, Button, ButtonIcon, ButtonTitle, C
 import { EmployeeProps, BranchProps } from '../BranchCard';
 import { ModalCentered } from '../ModalCentered';
 import { Alert } from 'react-native';
+import { ModalDelete } from '../ModalDelete';
 
 type Props = {
   data: EmployeeProps;
@@ -16,7 +17,8 @@ type Props = {
 
 export function EmployeeCard({ data, withOptions, getEmployees }: Props) {
   const[editModalVisible, setEditModalVisible] = useState(false);
-  
+  const[deleteModalVisible, setDeleteModalVisible] = useState(false);
+
   const [openPicker, setOpenPicker] = useState(false);
   const [pickerValue, setPickerValue] = useState('');
   const [pickerItems, setPickerItems] = useState([]);
@@ -56,12 +58,31 @@ export function EmployeeCard({ data, withOptions, getEmployees }: Props) {
     }
   }
 
+  async function handleDeleteEmployee() {
+    try {
+      await api.delete(`/employees/${data.id}`);
+
+      getEmployees();
+      handleCloseDeleteModal();
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  }
+
   function handleOpenEditModal() {
     setEditModalVisible(true);
   }
 
   function handleCloseEditModal() {
     setEditModalVisible(false);
+  }
+
+  function handleOpenDeleteModal() {
+    setDeleteModalVisible(true);
+  }
+
+  function handleCloseDeleteModal() {
+    setDeleteModalVisible(false);
   }
 
   useEffect(() => {
@@ -87,7 +108,7 @@ export function EmployeeCard({ data, withOptions, getEmployees }: Props) {
               name="square-edit-outline"
             />
           </Button>
-          <Button>
+          <Button onPress={handleOpenDeleteModal}>
             <ButtonIcon 
               type="delete"
               name="close"
@@ -126,6 +147,13 @@ export function EmployeeCard({ data, withOptions, getEmployees }: Props) {
           </EditButton>
         </EditEmployeeContainer>
       </ModalCentered>
+      <ModalDelete 
+        type="employee"
+        visible={deleteModalVisible}
+        closeModal={handleCloseDeleteModal}
+        confirmDelete={handleDeleteEmployee}
+        name={data.name}
+      />
     </Container>
   );
 };

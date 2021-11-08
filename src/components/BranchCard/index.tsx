@@ -4,6 +4,7 @@ import api from '../../services/api';
 
 import { EmployeeList } from '../EmployeeList';
 import { ModalCentered } from '../ModalCentered';
+import { ModalDelete } from '../ModalDelete';
 import { ModalView } from '../ModalView';
 
 import { 
@@ -12,7 +13,6 @@ import {
   ButtonsContainer, 
   ButtonTitle, 
   Container, 
-  DeleteButtonTitle, 
   Details, 
   DetailsContainer, 
   EditBranchContainer, 
@@ -24,10 +24,7 @@ import {
   Id, 
   Label, 
   Name, 
-  NameInput,
-  WarningButton,
-  WarningButtonContainer,
-  WarningText
+  NameInput
 } from './styles';
 
 export type EmployeeProps = {
@@ -160,24 +157,13 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
           </EditButton>
         </EditBranchContainer>
       </ModalCentered>
-      <ModalCentered
-        title="Apagar Filial"
-        visible={deleteModalVisible}
+      <ModalDelete
+        type="branch"
         closeModal={handleCloseDeleteModal}
-      >
-        <WarningText>Tem certeza que deseja apagar a filial { name }?</WarningText>
-        <WarningButtonContainer>
-          <WarningButton 
-            focused
-            onPress={handleCloseDeleteModal}
-          >
-            <ButtonTitle>Cancelar</ButtonTitle>
-          </WarningButton>
-          <WarningButton onPress={handleDeleteBranch}>
-            <DeleteButtonTitle>Apagar</DeleteButtonTitle>
-          </WarningButton>
-        </WarningButtonContainer>
-      </ModalCentered>
+        visible={deleteModalVisible}
+        name={name}
+        confirmDelete={handleDeleteBranch}
+      />
     </>
   );
 };

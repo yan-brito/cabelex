@@ -6,7 +6,7 @@ import { Container, Loading, LoadingContainer, Warning, WarningContainer } from 
 type Props = {
   withOptions?: boolean;
   data: EmployeeProps[];
-  getEmployees: () => void;
+  getEmployees?: () => void;
 };
 
 export function EmployeeList({ data, withOptions, getEmployees }: Props) {
