@@ -91,7 +91,6 @@ export function EmployeeCard({ data, withOptions, getEmployees }: Props) {
 
   return(
     <Container>
-      <ProfileImage source={{ uri: data.image }} resizeMode="cover" />
       <Details>
         <Name>{ data.name }</Name>
         <Id>ID: { data.id }</Id>

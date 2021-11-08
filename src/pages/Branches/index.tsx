@@ -4,12 +4,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import api from '../../services/api';
 
 import { 
-  AddIcon, 
   BranchList, 
   Button, 
   ButtonTitle, 
   Container, 
-  CreateBranch, 
   CreateBranchContainer, 
   Form, 
   Label, 
@@ -18,6 +16,8 @@ import {
 
 import { BranchCard, BranchProps, EmployeeProps } from '../../components/BranchCard';
 import { ModalCentered } from '../../components/ModalCentered';
+import { AddButton } from '../../components/AddButton';
+import { Loading } from '../../components/Loading';
 
 export function Branches() {
 
@@ -38,7 +38,6 @@ export function Branches() {
           return {
             id: employee.id,
             name: employee.name,
-            image: employee.image,
             branch: item.name
           }
         })
@@ -86,38 +85,39 @@ export function Branches() {
     getBranches();
   }, []));
 
-
-  return(
-    <Container>
-      <BranchList 
-        data={data}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => 
-          <BranchCard name={item.name} id={item.id} employees={item.employees} getBranches={getBranches} />
-        }
-      />
-      <CreateBranch onPress={handleOpenCreateBranchModal}>
-        <AddIcon/>
-      </CreateBranch>
-      <ModalCentered 
-        title="Adicionar Filial" 
-        visible={createBranchModalVisible} 
-        closeModal={handleCloseCreateBranchModal}
-      >
-        <CreateBranchContainer>
-          <Form>
-            <Label>Nome da filial: </Label>
-            <NameInput 
-              placeholder="Ex: Cabelex - SP"
-              value={newBranchName}
-              onChangeText={setNewBranchName}
-            />
-          </Form>
-          <Button onPress={handleCreateBranch} >
-            <ButtonTitle>Adicionar</ButtonTitle>
-          </Button>
-        </CreateBranchContainer>
-      </ModalCentered>
-    </Container>
-  );
+  if(!data) {
+    return <Loading/>
+  } else {
+    return(
+      <Container>
+        <BranchList 
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => 
+            <BranchCard name={item.name} id={item.id} employees={item.employees} getBranches={getBranches} />
+          }
+        />
+        <AddButton onPress={handleOpenCreateBranchModal} />
+        <ModalCentered 
+          title="Adicionar Filial" 
+          visible={createBranchModalVisible} 
+          closeModal={handleCloseCreateBranchModal}
+        >
+          <CreateBranchContainer>
+            <Form>
+              <Label>Nome da filial: </Label>
+              <NameInput 
+                placeholder="Ex: Cabelex - SP"
+                value={newBranchName}
+                onChangeText={setNewBranchName}
+              />
+            </Form>
+            <Button onPress={handleCreateBranch} >
+              <ButtonTitle>Adicionar</ButtonTitle>
+            </Button>
+          </CreateBranchContainer>
+        </ModalCentered>
+      </Container>
+    );
+  }
 };

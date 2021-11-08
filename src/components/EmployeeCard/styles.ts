@@ -34,7 +34,7 @@ export const ProfileImage = styled.Image`
 
 export const Details = styled.View`
   margin-left: 8px;
-  flex: 1;
+  flex: 2;
 `;
 
 export const Name = styled.Text`

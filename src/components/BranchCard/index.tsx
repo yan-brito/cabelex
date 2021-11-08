@@ -31,7 +31,6 @@ export type EmployeeProps = {
   id: string;
   name: string;
   branch: string;
-  image: string;
 };
 
 export type BranchProps = {

@@ -1,7 +1,10 @@
 import React from 'react';
+
+import { Container, Warning, WarningContainer } from './styles';
+
 import { EmployeeProps } from '../BranchCard';
 import { EmployeeCard } from '../EmployeeCard';
-import { Container, Loading, LoadingContainer, Warning, WarningContainer } from './styles';
+import { Loading } from '../Loading';
 
 type Props = {
   withOptions?: boolean;
@@ -11,11 +14,7 @@ type Props = {
 
 export function EmployeeList({ data, withOptions, getEmployees }: Props) {
     if(!data) {
-      return (
-        <LoadingContainer>
-          <Loading/>
-        </LoadingContainer>
-      )
+      return  <Loading />
     } else if(data.length > 0) {
       return (
         <Container

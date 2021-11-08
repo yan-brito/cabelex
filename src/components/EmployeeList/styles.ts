@@ -31,15 +31,3 @@ export const Warning = styled.Text`
 
   margin-top: -150px;
 `;
-
-export const LoadingContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Loading = styled.ActivityIndicator.attrs({
-  size: 'large',
-  color: '#6f4bc2'
-})`
-`;

@@ -66,28 +66,24 @@ export function makeServer() {
         name: 'Rogério Silva',
         id: '1',
         branch: '1',
-        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
         name: 'Luciano Neves',
         id: '2',
         branch: '1',
-        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
         name: 'Julia Santos',
         id: '3',
         branch: '2',
-        image: 'http://github.com/yan-brito.png'
       });
 
       server.create('employee', {
         name: 'Reinaldo Silva',
         id: '4',
         branch: '2',
-        image: 'http://github.com/yan-brito.png'
       });
 
     },
