@@ -16,6 +16,10 @@ export const Overlay = styled.View`
   align-items: center;
 `;
 
+export const CloseKeyboard = styled.TouchableWithoutFeedback`
+  
+`;
+
 export const Content = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
 

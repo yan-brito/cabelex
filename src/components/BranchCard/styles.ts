@@ -25,6 +25,16 @@ export const DetailsContainer = styled.View`
   align-items: center;
 `;
 
+export const IdContainer = styled.View`
+  align-items: center;
+`;
+
+export const IdLabel = styled.Text`
+  color: ${({ theme }) => theme.colors.shape};
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: 12px;
+`;
+
 export const Id = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
   font-size: 24px;
@@ -99,8 +109,6 @@ export const Label = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 16px;
   color: ${({ theme }) => theme.colors.primary};
-
-  margin-bottom: 5px;
 `;
 
 export const NameInput = styled.TextInput.attrs({
@@ -114,6 +122,7 @@ export const NameInput = styled.TextInput.attrs({
   width: 100%;
   height: 40px;
 
+  margin: 5px 0;
   padding-left: 5px;
 
   border: 1px solid ${({ theme }) => theme.colors.primary};
@@ -126,7 +135,7 @@ export const EditButton = styled(RectButton)`
   width: 50%;
   height: 50px;
 
-  margin: 15px 0;
+  margin: 10px 0;
 
   align-items: center;
   justify-content: center;

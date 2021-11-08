@@ -22,6 +22,8 @@ import {
   Employees, 
   Form, 
   Id, 
+  IdContainer, 
+  IdLabel, 
   Label, 
   Name, 
   NameInput
@@ -107,7 +109,10 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
     <>
       <Container>
         <DetailsContainer>
-          <Id>{ id }</Id>
+          <IdContainer>
+            <IdLabel>id</IdLabel>
+            <Id>{ id }</Id>
+          </IdContainer>
           <Details>
             <Name> { name } </Name>
             <EmployeeContainer>
@@ -146,6 +151,10 @@ export function BranchCard({ name, id, employees, getBranches }: Props) {
         <EditBranchContainer>
           <Form>
             <Label>Nome da filial</Label>
+            <Employees style={{color: '#363F5F'}}>
+                { employees.length }
+                { employees.length === 1 ? ' Funcionário' : ' Funcionários' }
+            </Employees>
             <NameInput
               value={newBranchName}
               onChangeText={setNewBranchName}
