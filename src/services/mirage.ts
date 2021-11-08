@@ -40,11 +40,11 @@ export function makeServer() {
 
     seeds(server) {
       server.create('user', {
-        name: 'Teste User', 
-        email: "teste@email.com", 
+        name: 'Carlos', 
+        email: "carlos@cabelex.com", 
         password: "123456", 
         created_at: new Date().toISOString(),
-        token: 'teste'
+        token: String(new Date().getTime())
       });
 
       server.create('branch', {
