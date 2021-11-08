@@ -13,10 +13,9 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
 
-
-import { AppRoutes } from './src/routes/app.routes';
 import theme from './src/global/styles/theme';
-import { SignIn } from './src/pages/SignIn';
+import { AuthProvider } from './src/hooks/auth';
+import { Routes } from './src/routes';
 
 if((window as any).server) {
   (window as any).server.shutdown();
@@ -37,10 +36,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SignIn/>
-      {/* <NavigationContainer>
-        <AppRoutes/>
-      </NavigationContainer> */}
+      <AuthProvider>
+        <Routes/>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

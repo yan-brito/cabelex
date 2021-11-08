@@ -75,7 +75,6 @@ export function Employees() {
   }
 
   useFocusEffect(useCallback(() => {
-    api.defaults.headers.common['Authorization'] = 'teste';
     getEmployees();
   }, []));
 

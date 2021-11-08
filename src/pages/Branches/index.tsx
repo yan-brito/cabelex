@@ -81,7 +81,6 @@ export function Branches() {
   };
 
   useFocusEffect(useCallback(() => {
-    api.defaults.headers.common['Authorization'] = 'teste';
     getBranches();
   }, []));
 
