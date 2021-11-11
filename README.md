@@ -16,7 +16,7 @@
 # 📍 About
 
 <p><b>Cabelex</b> was developed for a technical test.</p>
-<p>The application has login with ContextAPI data persistence and two CRUDs for branchs and employees.</p>
+<p>The application has login with ContextAPI data persistence and CRUDs for branchs and employees.</p>
 
 </br>
 </br>
