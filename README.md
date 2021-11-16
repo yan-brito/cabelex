@@ -39,7 +39,7 @@
 
 ### Clone the project
 
-    $ git clone https://github.com/yan-brito/nlw-together-gameplay.git
+    $ git clone https://github.com/yan-brito/cabelex.git
 
 
 ### Running
